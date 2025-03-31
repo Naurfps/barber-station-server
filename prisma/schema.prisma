@@ -12,7 +12,7 @@ model User {
   name      String
   email     String   @unique
   password  String
-  role      Role     @default(USER)
+  role      Role     
   createdAt DateTime @default(now())
 }
 
@@ -20,4 +20,13 @@ enum Role {
   USER
   EMPLOYEE
   ADMIN
+}
+
+model Services {
+  id        Int      @id @default(autoincrement())
+  name      String
+  description String
+  duration  Int
+  price     Float
+  createdAt DateTime @default(now())
 }
