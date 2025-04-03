@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://postgres.fehddrczidbfikggqawk:[HSS21eJGcyWsDAQt]@aws-0-eu-central-1.pooler.supabase.com:6543/postgres"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -12,21 +12,21 @@ model User {
   name      String
   email     String   @unique
   password  String
-  role      Role     
+  role      Role
   createdAt DateTime @default(now())
+}
+
+model Services {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  duration    Int
+  price       Float
+  createdAt   DateTime @default(now())
 }
 
 enum Role {
   USER
   EMPLOYEE
   ADMIN
-}
-
-model Services {
-  id        Int      @id @default(autoincrement())
-  name      String
-  description String
-  duration  Int
-  price     Float
-  createdAt DateTime @default(now())
 }
